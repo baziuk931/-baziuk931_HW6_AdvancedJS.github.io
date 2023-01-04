@@ -42,8 +42,9 @@ function getSubjects(name) {
         }
     }
 }
-console.log(getSubjects("Tanya"));
-document.writeln(`Get subjects for Student: <b>${getSubjects("Tanya")}</b><br>`);
+const studentName = students[0].name;
+console.log(getSubjects(studentName));
+document.writeln(`Get subjects for Student: <b>${getSubjects(studentName)}</b><br>`);
 
 //getAverageMark(students[0]) --> 3.79
 
@@ -68,8 +69,8 @@ function getAverageMark(name) {
     }
 }
 
-console.log(getAverageMark("Tanya"));
-document.writeln(`Get average mark for Student: <b>${getAverageMark("Tanya")}</b><br>`);
+console.log(getAverageMark(studentName));
+document.writeln(`Get average mark for Student: <b>${getAverageMark(studentName)}</b><br>`);
 
 //getStudentInfo(students[0]) --> { "course": 3, "name": "Tanya", "averageMark": 3.79}
 
@@ -87,8 +88,8 @@ function getStudentInfo(name) {
     }
 }
 
-console.log(getStudentInfo("Tanya"));
-document.writeln(`Get Student info: <b>${JSON.stringify(getStudentInfo("Tanya"))}</b><br>`);
+console.log(getStudentInfo(studentName));
+document.writeln(`Get Student info: <b>${JSON.stringify(getStudentInfo(studentName))}</b><br>`);
 
 //getStudentsNames(students) --> ["Anton", "Tanya, "Victor"]
 
