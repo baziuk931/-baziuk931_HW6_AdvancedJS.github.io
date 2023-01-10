@@ -34,7 +34,7 @@ function getSubjects(student) {
         return itemCorrected.charAt(0).toUpperCase() + itemCorrected.slice(1);
     });
 
-    return "=>" + subjectModified;
+    return subjectModified;
 }
 console.log(getSubjects(students[0]));
 document.writeln(`Get subjects for Student: <b>${getSubjects(students[0])}</b><br>`);
