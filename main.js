@@ -1,5 +1,4 @@
-//create array
-
+//create Array
 const students = [{
     name: "Tanya",
     course: 3,
@@ -26,95 +25,73 @@ const students = [{
     }
 }];
 
-
 //getSubjects(students[0] --> ["Math", "Algorithms", "Data science"]
+function getSubjects(student) {
 
-function getSubjects(name) {
-    for (let iterator of students) {
-        if (iterator.name === name) {
-            const subjectValue = Object.keys(iterator.subjects);
-            const subjectModified = subjectValue.map((item) => {
-                const itemCorrected = item.replace('_', ' ');
-                return itemCorrected.charAt(0).toUpperCase() + itemCorrected.slice(1);
-            });
+    const subjectValue = Object.keys(student.subjects);
+    const subjectModified = subjectValue.map((item) => {
+        const itemCorrected = item.replace('_', ' ');
+        return itemCorrected.charAt(0).toUpperCase() + itemCorrected.slice(1);
+    });
 
-            return name + "=>" + subjectModified;
-        }
-    }
+    return "=>" + subjectModified;
 }
-const studentName = students[0].name;
-console.log(getSubjects(studentName));
-document.writeln(`Get subjects for Student: <b>${getSubjects(studentName)}</b><br>`);
+console.log(getSubjects(students[0]));
+document.writeln(`Get subjects for Student: <b>${getSubjects(students[0])}</b><br>`);
 
 //getAverageMark(students[0]) --> 3.79
+function getAverageMark(student) {
+    const subjects = Object.values(student.subjects);
+    let sum = 0;
+    let counter = 0;
 
-function getAverageMark(name) {
-    for (const iterator of students) {
-        if (iterator.name === name) {
-            const subjects = Object.values(iterator.subjects);
-            let sum = 0;
-            let counter = 0;
-
-            for (const key of subjects) {
-                const marksSum = Object.values(key).reduce((a, i) => a + i, 0);
-                sum = sum + marksSum;
-
-                const marksCount = Object.values(key).reduce((a) => a + 1, 0);
-                counter = counter + marksCount;
-            }
-
-            const averageMark = (sum / counter).toFixed(2);
-            return averageMark;
-        }
+    for (const key of subjects) {
+        const marksSum = Object.values(key).reduce((a, i) => a + i, 0);
+        sum = sum + marksSum;
+        const marksCount = Object.values(key).reduce((a) => a + 1, 0);
+        counter = counter + marksCount;
     }
+    const averageMark = (sum / counter).toFixed(2);
+    return averageMark;
 }
 
-console.log(getAverageMark(studentName));
-document.writeln(`Get average mark for Student: <b>${getAverageMark(studentName)}</b><br>`);
+console.log(getAverageMark(students[0]));
+document.writeln(`Get average mark for Student: <b>${getAverageMark(students[0])}</b><br>`);
 
 //getStudentInfo(students[0]) --> { "course": 3, "name": "Tanya", "averageMark": 3.79}
+function getStudentInfo(student) {
 
-function getStudentInfo(name) {
-
-    for (let iterator of students) {
-        if (iterator.name === name) {
-            let studentInfo = {
-                course: iterator.course,
-                name: name,
-                averageMark: getAverageMark(name)
-            }
-            return studentInfo;
-        }
+    let studentInfo = {
+        course: student.course,
+        name: student.name,
+        averageMark: getAverageMark(student)
     }
+    return studentInfo;
 }
 
-console.log(getStudentInfo(studentName));
-document.writeln(`Get Student info: <b>${JSON.stringify(getStudentInfo(studentName))}</b><br>`);
+console.log(getStudentInfo(students[0]));
+document.writeln(`Get Student info: <b>${JSON.stringify(getStudentInfo(students[0]))}</b><br>`);
 
 //getStudentsNames(students) --> ["Anton", "Tanya, "Victor"]
-
 function getStudentsNames() {
     const arr = [];
     for (const iterator of students) {
         arr.push(iterator.name)
     }
     return arr.sort();
-
 }
+
 console.log(getStudentsNames());
 document.writeln(`Sorted students names: <b>${JSON.stringify(getStudentsNames())}</b><br>`);
 
-
 //getBestStudent(students) --> "Anton"
-
-
 function getBestStudent() {
     let highestMark = 0;
     let bestStudent = '';
 
     for (const item of students) {
-        if (getAverageMark(item.name) > highestMark) {
-            highestMark = getAverageMark(item.name);
+        if (getAverageMark(item) > highestMark) {
+            highestMark = getAverageMark(item);
             bestStudent = item.name;
         }
     }
@@ -124,12 +101,10 @@ console.log(getBestStudent());
 document.writeln(`Best Student: <b>${getBestStudent()}</b><br>`);
 
 //calculateWordLetters("тест") --> { "т": 2, "е": 1, "с": 1 }
-
 function calculateWordLetters(text) {
     const calcLettersObj = {};
 
     for (let i = 0; i < text.length; i++) {
-
         let counter = text.split('').map((e, index) => {
             if (e === text[i])
                 return index;
